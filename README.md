@@ -8,7 +8,7 @@
 [![DevDependency Status][daviddm-dev-image]][daviddm-dev-url]
 [![License][license-image]][license-url]
 
-Super Simple Action Creator
+Super Simple Base Action Creator for Flux.
 
 
 ## Installation
@@ -19,6 +19,63 @@ npm install --save flux-simple-action-creator
 
 
 ## Usage
+
+```javascript
+// actions/FoodFighterAction.js
+import SimpleActionCreator from 'flux-simple-action-creator';
+import Dispatcher from './dispatcher/AppDispatcher.js';
+
+
+export class FoodFighterAction extends SimpleActionCreator {
+  eat(food) {
+    this.dispatch('foodFighter:eat', {food});
+  }
+
+  reverse() {
+    this.dispatch('foodFighter:reverse');
+  }
+}
+
+export default new FoodFighterAction(dispatcher);
+```
+
+```javascript
+// stores/FoodFighterStore.js
+import {ReduceStore} from 'flux/utils';
+import Dispatcher from './dispatcher/AppDispatcher.js';
+
+
+export class FoodFighterStore extends ReduceStore {
+  initialState() {
+    return {stomach: []};
+  }
+
+  reduce(state, action) {
+    switch (action.type) {
+    case 'foodFighter:eat':
+      state.stomach.push(action.food);
+      break;
+    case 'foodFighter:reverse':
+      state.stomach = [];
+      break;
+    }
+    return state;
+  }
+}
+
+export default new FoodFighterStore(Dispatcher);
+```
+
+```javascript
+// dispatcher/AppDispatcher.js
+import {Dispatcher} from 'flux';
+
+export class AppDispatcher extends Dispatcher {};
+export default new AppDispatcher();
+```
+
+More detail, See [Doc](https://moqada.github.io/flux-simple-action-creator).
+
 
 [npm-url]: https://www.npmjs.com/package/flux-simple-action-creator
 [npm-image]: https://img.shields.io/npm/v/flux-simple-action-creator.svg?style=flat-square
