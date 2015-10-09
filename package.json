@@ -1,0 +1,58 @@
+{
+  "name": "flux-simple-action-creator",
+  "description": "Super Simple Base Action Creator for Flux",
+  "version": "0.0.0",
+  "author": "moqada <moqada@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/moqada/flux-simple-action-creator/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-plugin-espower": "^1.0.0",
+    "codecov.io": "^0.1.6",
+    "esdoc": "^0.4.0",
+    "eslint": "^1.6.0",
+    "eslint-config-moqada": "^5.0.0",
+    "flux": "^2.1.1",
+    "gh-pages": "^0.4.0",
+    "isparta": "^3.1.0",
+    "mocha": "^2.3.3",
+    "npm-run-all": "^1.2.11",
+    "power-assert": "^1.1.0",
+    "sinon": "^1.17.1"
+  },
+  "files": [
+    "lib"
+  ],
+  "homepage": "https://github.com/moqada/flux-simple-action-creator#readme",
+  "keywords": [
+    "flux",
+    "action",
+    "actioncreator"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moqada/flux-simple-action-creator.git"
+  },
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "codecov": "cat coverage/lcov.info | codecov",
+    "deploy": "npm-run-all doc gh-pages",
+    "doc": "esdoc -c esdoc.json",
+    "gh-pages": "gh-pages -d doc",
+    "lint": "eslint {src,test}",
+    "postpublish": "npm run deploy",
+    "prebuild": "rm -rf lib",
+    "predoc": "rm -rf doc",
+    "prepublish": "git diff --exit-code && npm run --if-present build",
+    "pretest": "rm -rf coverage",
+    "test": "npm-run-all lint test:coverage",
+    "test:coverage": "babel-node $(npm bin)/isparta cover --report text --report html --report lcovonly _mocha -- test/{**/,}*spec.js",
+    "watch": "npm-run-all --parallel watch:*",
+    "watch:src": "babel --out-dir=lib --watch src",
+    "watch:test": "mocha --watch test/{**/,}*spec.js"
+  }
+}
