@@ -36,7 +36,7 @@ export class FoodFighterAction extends SimpleActionCreator {
   }
 }
 
-export default new FoodFighterAction(dispatcher);
+export default new FoodFighterAction(Dispatcher);
 ```
 
 ```javascript
