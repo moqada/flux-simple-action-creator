@@ -22,7 +22,7 @@ npm install --save flux-simple-action-creator
 
 ### Basic
 
-**[Use ES7 Decorators](https://github.com/wycats/javascript-decorators).**
+**[Use ES2016 (ES7) Decorators](https://github.com/wycats/javascript-decorators).**
 You have to use like [babel.js](https://babeljs.io) with `babel --optional es7.decorators,es7.objectRestSpread` or `babel --stage 1`.
 
 ```javascript
