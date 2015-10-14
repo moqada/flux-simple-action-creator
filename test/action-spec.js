@@ -6,6 +6,7 @@ import SimpleActionCreator from '../src';
 import action from '../src/action';
 
 
+/** @test {action} */
 describe('action', () => {
   let DummyAction = null;
 
