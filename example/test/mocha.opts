@@ -1,0 +1,2 @@
+--require test/hook.js
+--recursive
