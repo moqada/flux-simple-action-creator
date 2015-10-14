@@ -33,7 +33,13 @@
   "keywords": [
     "action",
     "actioncreator",
-    "flux"
+    "decorator",
+    "flux",
+    "react",
+    "es2015",
+    "es2016",
+    "es6",
+    "es7"
   ],
   "license": "MIT",
   "main": "index.js",
