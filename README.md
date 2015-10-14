@@ -20,6 +20,84 @@ npm install --save flux-simple-action-creator
 
 ## Usage
 
+### Basic
+
+**[Use ES7 Decorators](https://github.com/wycats/javascript-decorators).**
+You have to use like [babel.js](https://babeljs.io) with `babel --optional es7.decorators,es7.objectRestSpread` or `babel --stage 1`.
+
+```javascript
+// actions/FoodFighterAction.js
+import SimpleActionCreator from 'flux-simple-action-creator';
+import action from 'flux-simple-action-creator/action';
+import Dispatcher from './dispatcher/AppDispatcher.js';
+
+
+export class FoodFighterAction extends SimpleActionCreator {
+
+  // Automatically insert `type` to method arguments
+  // and register Symbol to class variables. (ex. FoodFighterAction.types)
+  @action
+  eat(type, food) {
+    // assert(typeof type === 'symbol');
+    // assert(type.toStirng() === 'Symbol(eat)');
+    this.dispatch(type, {food});
+  }
+
+  // You can insert custom `type`, too.
+  @action('foodFighter:reverse')
+  reverse(type) {
+    // assert(type === 'foodFighter:reverse');
+    this.dispatch(type);
+  }
+}
+
+export default new FoodFighterAction(Dispatcher);
+
+// assert(FoodFighterAction.types.eat.toString() === 'Symbol(eat)');
+// assert(FoodFighterAction.types.reverse.toString() === 'Symbol(reverse)');
+// assert(FoodFighterAction.types.special === 'foodFighter:special');
+```
+
+```javascript
+// stores/FoodFighterStore.js
+import {ReduceStore} from 'flux/utils';
+import Dispatcher from './dispatcher/AppDispatcher.js';
+import {FoodFighterAction} from './actions/FoodFighterAction';
+
+
+export class FoodFighterStore extends ReduceStore {
+  initialState() {
+    return {stomach: []};
+  }
+
+  // structure of dispatched action from SimpleActionCreator is {type: {Symbol|string}, data: {any}}
+  reduce(state, action) {
+    switch (action.type) {
+    case FoodFighterAction.types.eat:
+      state.stomach.push(action.food);
+      break;
+    case FoodFighterAction.types.reverse:
+      state.stomach = [];
+      break;
+    }
+    return state;
+  }
+}
+
+export default new FoodFighterStore(Dispatcher);
+```
+
+```javascript
+// dispatcher/AppDispatcher.js
+import {Dispatcher} from 'flux';
+
+export class AppDispatcher extends Dispatcher {};
+export default new AppDispatcher();
+```
+
+
+### More Simple (no use decorator)
+
 ```javascript
 // actions/FoodFighterAction.js
 import SimpleActionCreator from 'flux-simple-action-creator';
