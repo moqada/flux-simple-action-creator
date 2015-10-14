@@ -13,6 +13,7 @@
     "babel-plugin-espower": "^1.0.0",
     "codecov.io": "^0.1.6",
     "esdoc": "^0.4.0",
+    "esdoc-es7-plugin": "0.0.2",
     "eslint": "^1.6.0",
     "eslint-config-moqada": "^5.0.0",
     "flux": "^2.1.1",
