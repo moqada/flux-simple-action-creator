@@ -6,6 +6,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "flux-simple-action-creator/src/action.js~action",
+    "function/index.html#static-function-action",
+    "<span>action</span> <span class=\"search-result-import-path\">flux-simple-action-creator/src/action.js</span>",
+    "function"
+  ],
+  [
     "builtinexternal/ecmascriptexternal.js~array",
     "external/index.html",
     "BuiltinExternal/ECMAScriptExternal.js~Array",
@@ -332,20 +338,68 @@ window.esdocSearchIndex = [
   [
     "simpleactioncreator src/index.js~simpleactioncreator,simpleactioncreator",
     "test-file/test/index-spec.js.html#lineNumber10",
-    "flux-simple-action-creator",
+    "SimpleActionCreator",
     "test"
   ],
   [
     "",
     "test-file/test/index-spec.js.html#lineNumber56",
-    "flux-simple-action-creator dispatch action",
+    "SimpleActionCreator dispatch action",
     "test"
   ],
   [
     "",
     "test-file/test/index-spec.js.html#lineNumber52",
-    "flux-simple-action-creator has dispatcher",
+    "SimpleActionCreator has dispatcher",
     "test"
+  ],
+  [
+    "",
+    "test-file/test/action-spec.js.html#lineNumber9",
+    "action",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/action-spec.js.html#lineNumber26",
+    "action class has decorated method",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/action-spec.js.html#lineNumber27",
+    "action class has decorated method should has types",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/action-spec.js.html#lineNumber34",
+    "action instance of class has decorated method",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/action-spec.js.html#lineNumber45",
+    "action instance of class has decorated method should has types",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/action-spec.js.html#lineNumber51",
+    "action instance of class has decorated method should insert `type` argument to method",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/action-spec.js.html#lineNumber60",
+    "action instance of class has decorated method should insert custom `type` argument to method",
+    "test"
+  ],
+  [
+    "src/action.js",
+    "file/src/action.js.html",
+    "src/action.js",
+    "file"
   ],
   [
     "src/index.js",
@@ -370,6 +424,12 @@ window.esdocSearchIndex = [
     "class/src/index.js~SimpleActionCreator.html#instance-member-dispatcher",
     "src/index.js~SimpleActionCreator#dispatcher",
     "member"
+  ],
+  [
+    "test/action-spec.js",
+    "test-file/test/action-spec.js.html",
+    "test/action-spec.js",
+    "testFile"
   ],
   [
     "test/index-spec.js",

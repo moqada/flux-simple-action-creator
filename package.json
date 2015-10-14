@@ -1,7 +1,7 @@
 {
   "name": "flux-simple-action-creator",
   "description": "Super Simple Base Action Creator for Flux",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": "moqada <moqada@gmail.com>",
   "bugs": {
     "url": "https://github.com/moqada/flux-simple-action-creator/issues"
@@ -9,11 +9,13 @@
   "dependencies": {},
   "devDependencies": {
     "babel": "^5.8.23",
+    "babel-eslint": "^4.1.3",
     "babel-plugin-espower": "^1.0.0",
     "codecov.io": "^0.1.6",
     "esdoc": "^0.4.0",
+    "esdoc-es7-plugin": "0.0.2",
     "eslint": "^1.6.0",
-    "eslint-config-moqada": "^5.0.0",
+    "eslint-config-moqada": "^6.0.0",
     "flux": "^2.1.1",
     "gh-pages": "^0.4.0",
     "isparta": "^3.1.0",
@@ -23,16 +25,24 @@
     "sinon": "^1.17.1"
   },
   "files": [
-    "lib"
+    "lib",
+    "action.js",
+    "index.js"
   ],
   "homepage": "https://github.com/moqada/flux-simple-action-creator#readme",
   "keywords": [
-    "flux",
     "action",
-    "actioncreator"
+    "actioncreator",
+    "decorator",
+    "flux",
+    "react",
+    "es2015",
+    "es2016",
+    "es6",
+    "es7"
   ],
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/moqada/flux-simple-action-creator.git"
@@ -49,8 +59,9 @@
     "predoc": "rm -rf doc",
     "prepublish": "git diff --exit-code && npm run --if-present build",
     "pretest": "rm -rf coverage",
-    "test": "npm-run-all lint test:coverage",
+    "test": "npm-run-all lint test:*",
     "test:coverage": "babel-node $(npm bin)/isparta cover --report text --report html --report lcovonly _mocha -- test/{**/,}*spec.js",
+    "test:example": "cd example && npm install && npm run build",
     "watch": "npm-run-all --parallel watch:*",
     "watch:src": "babel --out-dir=lib --watch src",
     "watch:test": "mocha --watch test/{**/,}*spec.js"

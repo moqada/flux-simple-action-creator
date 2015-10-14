@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">test/index-spec.js | API Document</title>
+  <title data-ice="title">test/action-spec.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -37,68 +37,74 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">test/index-spec.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">test/action-spec.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import assert from &apos;power-assert&apos;;
 import sinon from &apos;sinon&apos;;
 import {Dispatcher} from &apos;flux&apos;;
-import {ReduceStore} from &apos;flux/utils&apos;;
 
 import SimpleActionCreator from &apos;../src&apos;;
+import action from &apos;../src/action&apos;;
 
 
-/** @test {SimpleActionCreator} */
-describe(&apos;SimpleActionCreator&apos;, () =&gt; {
+describe(&apos;action&apos;, () =&gt; {
   let DummyAction = null;
-  let DummyStore = null;
-  let actionSpy = null;
-  let dispatcher = null;
-  let dummyAction = null;
-  let dummyStore = null;
-
-  before(() =&gt; {
-    DummyStore = class extends ReduceStore {
-      getInitialState() {
-        return {
-          go: [],
-          back: []
-        };
-      }
-      reduce(state, action) {
-        switch (action.type) {
-        case &apos;go&apos;:
-          state.go.push(action);
-          break;
-        default:
-          break;
-        }
-        return state;
-      }
-    };
-
-    DummyAction = class extends SimpleActionCreator {
-      go(data) {
-        this.dispatch(&apos;go&apos;, data);
-      }
-    };
-  });
 
   beforeEach(() =&gt; {
-    dispatcher = new Dispatcher();
-    dummyStore = new DummyStore(dispatcher);
-    dummyAction = new DummyAction(dispatcher);
-    actionSpy = sinon.spy(dummyStore, &apos;reduce&apos;);
+    DummyAction = class extends SimpleActionCreator {
+      @action
+      eat(type, count) {
+        this.dispatch(type, {count});
+      }
+
+      @action(&apos;dummyAction:reset&apos;)
+      reset(type) {
+        this.dispatch(type);
+      }
+    };
   });
 
-  it(&apos;has dispatcher&apos;, () =&gt; {
-    assert(dummyAction.dispatcher === dispatcher);
+  describe(&apos;class has decorated method&apos;, () =&gt; {
+    it(&apos;should has types&apos;, () =&gt; {
+      assert.deepEqual(Object.keys(DummyAction.types).length, 2);
+      assert(DummyAction.types.eat.toString() === &apos;Symbol(eat)&apos;);
+      assert(DummyAction.types.reset === &apos;dummyAction:reset&apos;);
+    });
   });
 
-  it(&apos;dispatch action&apos;, () =&gt; {
-    const goData = {to: &apos;America&apos;, when: &apos;now&apos;};
-    dummyAction.go(goData);
-    assert(actionSpy.args.length === 1);
-    assert(actionSpy.args[0].length === 2);
-    assert.deepEqual(actionSpy.args[0][1], {type: &apos;go&apos;, data: goData});
+  describe(&apos;instance of class has decorated method&apos;, () =&gt; {
+    let dispatcher = null;
+    let dummyAction = null;
+    let dispatcherSpy = null;
+
+    beforeEach(() =&gt; {
+      dispatcher = new Dispatcher();
+      dispatcherSpy = sinon.spy(dispatcher, &apos;dispatch&apos;);
+      dummyAction = new DummyAction(dispatcher);
+    });
+
+    it(&apos;should has types&apos;, () =&gt; {
+      assert.deepEqual(Object.keys(dummyAction.types), [&apos;eat&apos;, &apos;reset&apos;]);
+      assert(dummyAction.types.eat.toString() === &apos;Symbol(eat)&apos;);
+      assert(dummyAction.types.reset === &apos;dummyAction:reset&apos;);
+    });
+
+    it(&apos;should insert `type` argument to method&apos;, () =&gt; {
+      dummyAction.eat(2);
+      const args = dispatcherSpy.args;
+      assert(args.length === 1);
+      assert(Object.keys(args[0][0]).length === 2);
+      assert(args[0][0].type.toString() === &apos;Symbol(eat)&apos;);
+      assert.deepEqual(args[0][0].data, {count: 2});
+    });
+
+    it(&apos;should insert custom `type` argument to method&apos;, () =&gt; {
+      dummyAction.reset();
+      const args = dispatcherSpy.args;
+      assert(args.length === 1);
+      assert(Object.keys(args[0][0]).length === 2);
+      assert(args[0][0].type === &apos;dummyAction:reset&apos;);
+      assert(args[0][0].data === undefined);
+    });
   });
 });
 </code></pre>
