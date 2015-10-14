@@ -31,9 +31,9 @@
   ],
   "homepage": "https://github.com/moqada/flux-simple-action-creator#readme",
   "keywords": [
-    "flux",
     "action",
-    "actioncreator"
+    "actioncreator",
+    "flux"
   ],
   "license": "MIT",
   "main": "index.js",
