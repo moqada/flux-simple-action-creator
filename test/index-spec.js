@@ -7,7 +7,7 @@ import SimpleActionCreator from '../src';
 
 
 /** @test {SimpleActionCreator} */
-describe('flux-simple-action-creator', () => {
+describe('SimpleActionCreator', () => {
   let DummyAction = null;
   let DummyStore = null;
   let actionSpy = null;
