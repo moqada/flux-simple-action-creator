@@ -59,8 +59,9 @@
     "predoc": "rm -rf doc",
     "prepublish": "git diff --exit-code && npm run --if-present build",
     "pretest": "rm -rf coverage",
-    "test": "npm-run-all lint test:coverage",
+    "test": "npm-run-all lint test:*",
     "test:coverage": "babel-node $(npm bin)/isparta cover --report text --report html --report lcovonly _mocha -- test/{**/,}*spec.js",
+    "test:example": "cd example && npm install && npm run build",
     "watch": "npm-run-all --parallel watch:*",
     "watch:src": "babel --out-dir=lib --watch src",
     "watch:test": "mocha --watch test/{**/,}*spec.js"
