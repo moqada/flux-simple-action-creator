@@ -15,7 +15,7 @@
     "esdoc": "^0.4.0",
     "esdoc-es7-plugin": "0.0.2",
     "eslint": "^1.6.0",
-    "eslint-config-moqada": "^6.0.0",
+    "eslint-config-moqada": "^7.0.0",
     "flux": "^2.1.1",
     "gh-pages": "^0.4.0",
     "isparta": "^3.1.0",
