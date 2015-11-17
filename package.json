@@ -53,7 +53,7 @@
     "deploy": "npm-run-all doc gh-pages",
     "doc": "esdoc -c esdoc.json",
     "gh-pages": "gh-pages -d doc",
-    "lint": "eslint {src,test}",
+    "lint": "eslint --cache {src,test}",
     "postpublish": "npm run deploy",
     "prebuild": "rm -rf lib",
     "predoc": "rm -rf doc",

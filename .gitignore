@@ -5,3 +5,4 @@ coverage/
 doc/
 lib/
 node_modules/
+.eslintcache
