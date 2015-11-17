@@ -64,6 +64,7 @@
     "test:example": "cd example && npm install && npm run build",
     "watch": "npm-run-all --parallel watch:*",
     "watch:src": "babel --out-dir=lib --watch src",
-    "watch:test": "mocha --watch test/{**/,}*spec.js"
+    "watch:test": "mocha --watch test/{**/,}*spec.js",
+    "watch:lint": "chokidar src test -c npm run -s eslint"
   }
 }
