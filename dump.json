@@ -93,7 +93,7 @@
     "importStyle": "action",
     "description": "Decorator that register action type to ActionCreator",
     "examples": [
-      "class SampleAction extends SimpleActionCreator {\n\n  // Register action type and insert arguments - Symbol\n  @action\n  method1(type, foo) {\n    this.dispatch(type, {foo});\n  }\n\n  // Register custom action types and insert arguments\n  @action('foobarActionType')\n  method2(type, bar) {\n    this.dispatch(type, {bar});\n  }\n}\n\n// Action types can access through static variables.\nSampleAction.types.method1;  // -> Symbol('method1')\nSampleAction.types.method2;  // -> 'foobarActionType'\n\n// instance variables, too.\nconst ins = new SampleAction();\nassert(ins.types.method1 === SampleAction.types.method1);\nassert(ins.types.method2 === SampleAction.types.method2);\n\n// `type` arg is automatically inserted when execute method.\nins.method1('hoge');  // -> received arguments are: Symbol('method1'), 'hoge'\nins.method2('fuga');  // -> received arguments are: 'foobarActionType', 'fuga'"
+      "class SampleAction extends SimpleActionCreator {\n  // Register action type and insert arguments - Symbol\n  @action\n  method1(type, foo) {\n    this.dispatch(type, {foo});\n  }\n  // Register custom action types and insert arguments\n  @action('foobarActionType')\n  method2(type, bar) {\n    this.dispatch(type, {bar});\n  }\n}\n// Action types can access through static variables.\nSampleAction.types.method1;  // -> Symbol('method1')\nSampleAction.types.method2;  // -> 'foobarActionType'\n// instance variables, too.\nconst ins = new SampleAction();\nassert(ins.types.method1 === SampleAction.types.method1);\nassert(ins.types.method2 === SampleAction.types.method2);\n// `type` arg is automatically inserted when execute method.\nins.method1('hoge');  // -> received arguments are: Symbol('method1'), 'hoge'\nins.method2('fuga');  // -> received arguments are: 'foobarActionType', 'fuga'"
     ],
     "lineNumber": 68,
     "params": [
@@ -132,7 +132,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "/**\n * SimpleActionCreator\n */\nexport default class SimpleActionCreator {\n  /**\n   * Constructor\n   *\n   * @param {Dispatcher} dispatcher Disptacher instance\n   */\n  constructor(dispatcher) {\n    /**\n     * Flux Dispatcher instance\n     *\n     * @type {Dispatcher}\n     */\n    this.dispatcher = dispatcher;\n  }\n\n  /**\n   * Dispatch Action\n   *\n   * @param {Symbol|string} type action type\n   * @param {Object|undefined} data action data\n   */\n  dispatch(type, data) {\n    this.dispatcher.dispatch({type, data});\n  }\n}\n"
+    "content": "/**\n * SimpleActionCreator\n */\nexport default class SimpleActionCreator {  // eslint-disable-line require-jsdoc\n  /**\n   * Constructor\n   *\n   * @param {Dispatcher} dispatcher Disptacher instance\n   */\n  constructor(dispatcher) {\n    /**\n     * Flux Dispatcher instance\n     *\n     * @type {Dispatcher}\n     */\n    this.dispatcher = dispatcher;\n  }\n\n  /**\n   * Dispatch Action\n   *\n   * @param {Symbol|string} type action type\n   * @param {Object|undefined} data action data\n   */\n  dispatch(type, data) {\n    this.dispatcher.dispatch({type, data});\n  }\n}\n"
   },
   {
     "__docId__": 4,
@@ -936,6 +936,19 @@
   },
   {
     "__docId__": 64,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "AudioContext",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~AudioContext",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 65,
     "kind": "testFile",
     "static": true,
     "variation": null,
@@ -945,10 +958,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import assert from 'power-assert';\nimport sinon from 'sinon';\nimport {Dispatcher} from 'flux';\n\nimport SimpleActionCreator from '../src';\nimport action from '../src/action';\n\n\ndescribe('action', () => {\n  let DummyAction = null;\n\n  beforeEach(() => {\n    DummyAction = class extends SimpleActionCreator {\n      @action\n      eat(type, count) {\n        this.dispatch(type, {count});\n      }\n\n      @action('dummyAction:reset')\n      reset(type) {\n        this.dispatch(type);\n      }\n    };\n  });\n\n  describe('class has decorated method', () => {\n    it('should has types', () => {\n      assert.deepEqual(Object.keys(DummyAction.types).length, 2);\n      assert(DummyAction.types.eat.toString() === 'Symbol(eat)');\n      assert(DummyAction.types.reset === 'dummyAction:reset');\n    });\n  });\n\n  describe('instance of class has decorated method', () => {\n    let dispatcher = null;\n    let dummyAction = null;\n    let dispatcherSpy = null;\n\n    beforeEach(() => {\n      dispatcher = new Dispatcher();\n      dispatcherSpy = sinon.spy(dispatcher, 'dispatch');\n      dummyAction = new DummyAction(dispatcher);\n    });\n\n    it('should has types', () => {\n      assert.deepEqual(Object.keys(dummyAction.types), ['eat', 'reset']);\n      assert(dummyAction.types.eat.toString() === 'Symbol(eat)');\n      assert(dummyAction.types.reset === 'dummyAction:reset');\n    });\n\n    it('should insert `type` argument to method', () => {\n      dummyAction.eat(2);\n      const args = dispatcherSpy.args;\n      assert(args.length === 1);\n      assert(Object.keys(args[0][0]).length === 2);\n      assert(args[0][0].type.toString() === 'Symbol(eat)');\n      assert.deepEqual(args[0][0].data, {count: 2});\n    });\n\n    it('should insert custom `type` argument to method', () => {\n      dummyAction.reset();\n      const args = dispatcherSpy.args;\n      assert(args.length === 1);\n      assert(Object.keys(args[0][0]).length === 2);\n      assert(args[0][0].type === 'dummyAction:reset');\n      assert(args[0][0].data === undefined);\n    });\n  });\n});\n"
+    "content": "import assert from 'power-assert';\nimport sinon from 'sinon';\nimport {Dispatcher} from 'flux';\n\nimport SimpleActionCreator from '../src';\nimport action from '../src/action';\n\n\n/** @test {action} */\ndescribe('action', () => {\n  let DummyAction = null;\n\n  beforeEach(() => {\n    DummyAction = class extends SimpleActionCreator {\n      @action\n      eat(type, count) {\n        this.dispatch(type, {count});\n      }\n\n      @action('dummyAction:reset')\n      reset(type) {\n        this.dispatch(type);\n      }\n    };\n  });\n\n  describe('class has decorated method', () => {\n    it('should has types', () => {\n      assert.deepEqual(Object.keys(DummyAction.types).length, 2);\n      assert(DummyAction.types.eat.toString() === 'Symbol(eat)');\n      assert(DummyAction.types.reset === 'dummyAction:reset');\n    });\n  });\n\n  describe('instance of class has decorated method', () => {\n    let dispatcher = null;\n    let dummyAction = null;\n    let dispatcherSpy = null;\n\n    beforeEach(() => {\n      dispatcher = new Dispatcher();\n      dispatcherSpy = sinon.spy(dispatcher, 'dispatch');\n      dummyAction = new DummyAction(dispatcher);\n    });\n\n    it('should has types', () => {\n      assert.deepEqual(Object.keys(dummyAction.types), ['eat', 'reset']);\n      assert(dummyAction.types.eat.toString() === 'Symbol(eat)');\n      assert(dummyAction.types.reset === 'dummyAction:reset');\n    });\n\n    it('should insert `type` argument to method', () => {\n      dummyAction.eat(2);\n      const args = dispatcherSpy.args;\n      assert(args.length === 1);\n      assert(Object.keys(args[0][0]).length === 2);\n      assert(args[0][0].type.toString() === 'Symbol(eat)');\n      assert.deepEqual(args[0][0].data, {count: 2});\n    });\n\n    it('should insert custom `type` argument to method', () => {\n      dummyAction.reset();\n      const args = dispatcherSpy.args;\n      assert(args.length === 1);\n      assert(Object.keys(args[0][0]).length === 2);\n      assert(args[0][0].type === 'dummyAction:reset');\n      assert(args[0][0].data === undefined);\n    });\n  });\n});\n"
   },
   {
-    "__docId__": 65,
+    "__docId__": 66,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -959,10 +972,19 @@
     "longname": "test/action-spec.js~describe0",
     "access": null,
     "description": "action",
-    "lineNumber": 9
+    "lineNumber": 10,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{action}"
+      }
+    ],
+    "testTargets": [
+      "action"
+    ]
   },
   {
-    "__docId__": 66,
+    "__docId__": 67,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -973,10 +995,10 @@
     "longname": "test/action-spec.js~describe0.describe1",
     "access": null,
     "description": "class has decorated method",
-    "lineNumber": 26
+    "lineNumber": 27
   },
   {
-    "__docId__": 67,
+    "__docId__": 68,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -987,10 +1009,10 @@
     "longname": "test/action-spec.js~describe0.describe1.it2",
     "access": null,
     "description": "should has types",
-    "lineNumber": 27
+    "lineNumber": 28
   },
   {
-    "__docId__": 68,
+    "__docId__": 69,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -1001,10 +1023,10 @@
     "longname": "test/action-spec.js~describe0.describe3",
     "access": null,
     "description": "instance of class has decorated method",
-    "lineNumber": 34
+    "lineNumber": 35
   },
   {
-    "__docId__": 69,
+    "__docId__": 70,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -1015,10 +1037,10 @@
     "longname": "test/action-spec.js~describe0.describe3.it4",
     "access": null,
     "description": "should has types",
-    "lineNumber": 45
+    "lineNumber": 46
   },
   {
-    "__docId__": 70,
+    "__docId__": 71,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -1029,10 +1051,10 @@
     "longname": "test/action-spec.js~describe0.describe3.it5",
     "access": null,
     "description": "should insert `type` argument to method",
-    "lineNumber": 51
+    "lineNumber": 52
   },
   {
-    "__docId__": 71,
+    "__docId__": 72,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -1043,10 +1065,10 @@
     "longname": "test/action-spec.js~describe0.describe3.it6",
     "access": null,
     "description": "should insert custom `type` argument to method",
-    "lineNumber": 60
+    "lineNumber": 61
   },
   {
-    "__docId__": 72,
+    "__docId__": 73,
     "kind": "testFile",
     "static": true,
     "variation": null,
@@ -1059,7 +1081,7 @@
     "content": "import assert from 'power-assert';\nimport sinon from 'sinon';\nimport {Dispatcher} from 'flux';\nimport {ReduceStore} from 'flux/utils';\n\nimport SimpleActionCreator from '../src';\n\n\n/** @test {SimpleActionCreator} */\ndescribe('SimpleActionCreator', () => {\n  let DummyAction = null;\n  let DummyStore = null;\n  let actionSpy = null;\n  let dispatcher = null;\n  let dummyAction = null;\n  let dummyStore = null;\n\n  before(() => {\n    DummyStore = class extends ReduceStore {\n      getInitialState() {\n        return {\n          go: [],\n          back: []\n        };\n      }\n      reduce(state, action) {\n        switch (action.type) {\n        case 'go':\n          state.go.push(action);\n          break;\n        default:\n          break;\n        }\n        return state;\n      }\n    };\n\n    DummyAction = class extends SimpleActionCreator {\n      go(data) {\n        this.dispatch('go', data);\n      }\n    };\n  });\n\n  beforeEach(() => {\n    dispatcher = new Dispatcher();\n    dummyStore = new DummyStore(dispatcher);\n    dummyAction = new DummyAction(dispatcher);\n    actionSpy = sinon.spy(dummyStore, 'reduce');\n  });\n\n  it('has dispatcher', () => {\n    assert(dummyAction.dispatcher === dispatcher);\n  });\n\n  it('dispatch action', () => {\n    const goData = {to: 'America', when: 'now'};\n    dummyAction.go(goData);\n    assert(actionSpy.args.length === 1);\n    assert(actionSpy.args[0].length === 2);\n    assert.deepEqual(actionSpy.args[0][1], {type: 'go', data: goData});\n  });\n});\n"
   },
   {
-    "__docId__": 73,
+    "__docId__": 74,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -1082,7 +1104,7 @@
     ]
   },
   {
-    "__docId__": 74,
+    "__docId__": 75,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -1096,7 +1118,7 @@
     "lineNumber": 52
   },
   {
-    "__docId__": 75,
+    "__docId__": 76,
     "kind": "testIt",
     "static": true,
     "variation": null,

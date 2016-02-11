@@ -294,6 +294,12 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
+    "builtinexternal/webapiexternal.js~audiocontext",
+    "external/index.html",
+    "BuiltinExternal/WebAPIExternal.js~AudioContext",
+    "external"
+  ],
+  [
     "builtinexternal/webapiexternal.js~canvasrenderingcontext2d",
     "external/index.html",
     "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
@@ -354,44 +360,44 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
-    "",
-    "test-file/test/action-spec.js.html#lineNumber9",
+    "action src/action.js~action,action",
+    "test-file/test/action-spec.js.html#lineNumber10",
     "action",
     "test"
   ],
   [
     "",
-    "test-file/test/action-spec.js.html#lineNumber26",
+    "test-file/test/action-spec.js.html#lineNumber27",
     "action class has decorated method",
     "test"
   ],
   [
     "",
-    "test-file/test/action-spec.js.html#lineNumber27",
+    "test-file/test/action-spec.js.html#lineNumber28",
     "action class has decorated method should has types",
     "test"
   ],
   [
     "",
-    "test-file/test/action-spec.js.html#lineNumber34",
+    "test-file/test/action-spec.js.html#lineNumber35",
     "action instance of class has decorated method",
     "test"
   ],
   [
     "",
-    "test-file/test/action-spec.js.html#lineNumber45",
+    "test-file/test/action-spec.js.html#lineNumber46",
     "action instance of class has decorated method should has types",
     "test"
   ],
   [
     "",
-    "test-file/test/action-spec.js.html#lineNumber51",
+    "test-file/test/action-spec.js.html#lineNumber52",
     "action instance of class has decorated method should insert `type` argument to method",
     "test"
   ],
   [
     "",
-    "test-file/test/action-spec.js.html#lineNumber60",
+    "test-file/test/action-spec.js.html#lineNumber61",
     "action instance of class has decorated method should insert custom `type` argument to method",
     "test"
   ],

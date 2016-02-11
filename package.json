@@ -1,28 +1,33 @@
 {
   "name": "flux-simple-action-creator",
   "description": "Super Simple Base Action Creator for Flux",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "moqada <moqada@gmail.com>",
   "bugs": {
     "url": "https://github.com/moqada/flux-simple-action-creator/issues"
   },
   "dependencies": {},
   "devDependencies": {
-    "babel": "^5.8.23",
-    "babel-eslint": "^4.1.3",
-    "babel-plugin-espower": "^1.0.0",
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.1",
+    "babel-eslint": "^4.1.8",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-plugin-espower": "^2.1.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-object-rest-spread": "^6.5.0",
+    "babel-preset-es2015": "^6.5.0",
     "codecov.io": "^0.1.6",
-    "esdoc": "^0.4.0",
-    "esdoc-es7-plugin": "0.0.2",
-    "eslint": "^1.6.0",
-    "eslint-config-moqada": "^6.0.0",
+    "esdoc": "^0.4.4",
+    "esdoc-es7-plugin": "0.0.3",
+    "eslint": "^1.10.3",
+    "eslint-config-moqada": "^10.0.0",
     "flux": "^2.1.1",
-    "gh-pages": "^0.4.0",
-    "isparta": "^3.1.0",
-    "mocha": "^2.3.3",
-    "npm-run-all": "^1.2.11",
-    "power-assert": "^1.1.0",
-    "sinon": "^1.17.1"
+    "gh-pages": "^0.9.0",
+    "isparta": "^4.0.0",
+    "mocha": "^2.4.5",
+    "npm-run-all": "^1.5.1",
+    "power-assert": "^1.2.0",
+    "sinon": "^1.17.3"
   },
   "files": [
     "lib",
@@ -53,7 +58,7 @@
     "deploy": "npm-run-all doc gh-pages",
     "doc": "esdoc -c esdoc.json",
     "gh-pages": "gh-pages -d doc",
-    "lint": "eslint {src,test}",
+    "lint": "eslint --cache {src,test}",
     "postpublish": "npm run deploy",
     "prebuild": "rm -rf lib",
     "predoc": "rm -rf doc",
@@ -64,6 +69,7 @@
     "test:example": "cd example && npm install && npm run build",
     "watch": "npm-run-all --parallel watch:*",
     "watch:src": "babel --out-dir=lib --watch src",
-    "watch:test": "mocha --watch test/{**/,}*spec.js"
+    "watch:test": "mocha --watch test/{**/,}*spec.js",
+    "watch:lint": "chokidar src test -c npm run -s eslint"
   }
 }
