@@ -1,6 +1,4 @@
 {
-  "optional": [
-    "es7.decorators",
-    "es7.objectRestSpread"
-  ]
+  "plugins": ["add-module-exports", "transform-decorators-legacy", "transform-object-rest-spread"],
+  "presets": ["es2015"]
 }

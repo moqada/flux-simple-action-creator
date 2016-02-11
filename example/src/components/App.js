@@ -7,7 +7,7 @@ import FoodFighterStore from '../stores/FoodFighterStore';
 /**
  * Root App Component
  */
-export default class App extends React.Component {
+export default class App extends React.Component {  // eslint-disable-line require-jsdoc
   /**
    * Depends stores
    *
@@ -33,14 +33,14 @@ export default class App extends React.Component {
    */
   onClickIncrease = () => {
     FoodFighterAction.eat(1);
-  }
+  };
 
   /**
    * Click handler for reset button
    */
   onClickReset = () => {
     FoodFighterAction.reset();
-  }
+  };
 
   /**
    * Render
