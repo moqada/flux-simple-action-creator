@@ -33,14 +33,14 @@ export default class App extends React.Component {
    */
   onClickIncrease = () => {
     FoodFighterAction.eat(1);
-  }
+  };
 
   /**
    * Click handler for reset button
    */
   onClickReset = () => {
     FoodFighterAction.reset();
-  }
+  };
 
   /**
    * Render
