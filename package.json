@@ -1,7 +1,7 @@
 {
   "name": "flux-simple-action-creator",
   "description": "Super Simple Base Action Creator for Flux",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "moqada <moqada@gmail.com>",
   "bugs": {
     "url": "https://github.com/moqada/flux-simple-action-creator/issues"
