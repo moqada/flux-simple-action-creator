@@ -7,7 +7,7 @@ import Dispatcher from '../Dispatcher';
 /**
  * FoodFighterAction
  */
-export class FoodFighterAction extends SimpleActionCreator {
+export class FoodFighterAction extends SimpleActionCreator {  // eslint-disable-line require-jsdoc
 
   /**
    * Action for eating count
@@ -16,7 +16,7 @@ export class FoodFighterAction extends SimpleActionCreator {
    * @param {number} count count number
    */
   @action
-  eat(type, count) {
+  eat(type, count) {  // eslint-disable-line require-jsdoc
     this.dispatch(type, {count});
   }
 
@@ -26,7 +26,7 @@ export class FoodFighterAction extends SimpleActionCreator {
    * @param {Symbol} type action type
    */
   @action
-  reset(type) {
+  reset(type) {  // eslint-disable-line require-jsdoc
     this.dispatch(type);
   }
 }

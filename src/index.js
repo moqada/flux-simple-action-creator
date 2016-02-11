@@ -1,7 +1,7 @@
 /**
  * SimpleActionCreator
  */
-export default class SimpleActionCreator {
+export default class SimpleActionCreator {  // eslint-disable-line require-jsdoc
   /**
    * Constructor
    *

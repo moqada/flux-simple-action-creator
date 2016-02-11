@@ -6,7 +6,7 @@ import {FoodFighterAction} from '../actions/FoodFighterAction';
 /**
  * FoodFighterStore
  */
-export class FoodFighterStore extends ReduceStore {
+export class FoodFighterStore extends ReduceStore {  // eslint-disable-line require-jsdoc
   /**
    * Initial state
    *

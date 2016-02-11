@@ -7,7 +7,7 @@ import FoodFighterStore from '../stores/FoodFighterStore';
 /**
  * Root App Component
  */
-export default class App extends React.Component {
+export default class App extends React.Component {  // eslint-disable-line require-jsdoc
   /**
    * Depends stores
    *
