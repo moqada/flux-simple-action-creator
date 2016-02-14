@@ -22,8 +22,8 @@ npm install --save flux-simple-action-creator
 
 ### Basic
 
-**[Use ES2016 (ES7) Decorators](https://github.com/wycats/javascript-decorators).**
-You have to use like [babel.js](https://babeljs.io) with `babel --optional es7.decorators,es7.objectRestSpread` or `babel --stage 1`.
+**[Use Decorators](https://github.com/wycats/javascript-decorators).**
+You have to use like [babel.js](https://babeljs.io) with [babel-plugin-transform-decorators-legacy](https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy).
 
 ```javascript
 // actions/FoodFighterAction.js
