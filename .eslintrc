@@ -1,4 +1,7 @@
-extends: moqada
+extends:
+  - moqada
+  - moqada/node
+  - moqada/browser
 parser: babel-eslint
 rules:
   no-param-reassign: 0

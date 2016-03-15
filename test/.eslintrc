@@ -1,4 +1,4 @@
-env:
-  mocha: true
+extends:
+  - moqada/mocha
 rules:
   require-jsdoc: 0
