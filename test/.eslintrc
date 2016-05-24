@@ -2,3 +2,5 @@ extends:
   - moqada/mocha
 rules:
   require-jsdoc: 0
+  # buggy
+  node/no-unpublished-import: 0

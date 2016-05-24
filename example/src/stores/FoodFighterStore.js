@@ -21,7 +21,7 @@ export class FoodFighterStore extends ReduceStore {  // eslint-disable-line requ
    *
    * @param {number} state count
    * @param {Object} action action
-   * @param {Symbol} action.type action type
+   * @param {symbol} action.type action type
    * @param {Object|undefined} action.data action data
    * @return {number}
    */

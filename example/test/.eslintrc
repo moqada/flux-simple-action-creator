@@ -2,3 +2,6 @@ env:
   mocha: true
 rules:
   no-magic-numbers: 0
+  # buggy
+  node/no-unpublished-import: 0
+  node/no-unpublished-require: 0

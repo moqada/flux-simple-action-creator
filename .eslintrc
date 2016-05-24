@@ -6,3 +6,4 @@ parser: babel-eslint
 rules:
   no-param-reassign: 0
   max-params: [1, 4]
+  node/no-unsupported-features: 0
