@@ -29,7 +29,7 @@ describe('FoodFighterStore', () => {
 
   describe('when dispatch FoodFighterAction.rest', () => {
     it('should increase count', () => {
-      store._state = 100;
+      store._state = 100;  // eslint-disable-line no-underscore-dangle
       assert(store.getState() === 100);
       action.reset();
       assert(store.getState() === 0);

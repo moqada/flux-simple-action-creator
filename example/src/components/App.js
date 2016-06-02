@@ -53,14 +53,14 @@ export default class App extends React.Component {  // eslint-disable-line requi
         <h1>Count: {this.state.count}</h1>
         <div>
           <button
+            ref={c => (this.increase = c)}
             onClick={this.onClickIncrease}
-            ref="increase"
           >
             Increase
           </button>
           <button
+            ref={c => (this.reset = c)}
             onClick={this.onClickReset}
-            ref="reset"
           >
             Reset
           </button>

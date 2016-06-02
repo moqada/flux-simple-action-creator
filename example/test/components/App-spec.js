@@ -35,7 +35,7 @@ describe('App', () => {
 
   describe('when click increase button', () => {
     it('should dispatch FoodFighterAction#eat', () => {
-      const node = cmp.refs.increase;
+      const node = cmp.increase;
       ReactTestUtils.Simulate.click(node);
       assert(dispatchSpy.args.length === 1);
       assert(dispatchSpy.args[0][0].toString() === 'Symbol(eat)');
@@ -45,7 +45,7 @@ describe('App', () => {
 
   describe('when click reset button', () => {
     it('should dispatch FoodFighterAction#reset', () => {
-      const node = cmp.refs.reset;
+      const node = cmp.reset;
       ReactTestUtils.Simulate.click(node);
       assert(dispatchSpy.args.length === 1);
       assert(dispatchSpy.args[0][0].toString() === 'Symbol(reset)');
