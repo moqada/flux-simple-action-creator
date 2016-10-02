@@ -20,7 +20,7 @@
     "esdoc": "^0.4.4",
     "esdoc-es7-plugin": "0.0.3",
     "eslint": "^3.0.0",
-    "eslint-config-moqada": "^16.0.0",
+    "eslint-config-moqada": "^17.0.0",
     "eslint-plugin-node": "^2.0.0",
     "flux": "^2.1.1",
     "gh-pages": "^0.11.0",
