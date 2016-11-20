@@ -28,6 +28,7 @@
     "mocha": "^3.0.0",
     "npm-run-all": "^3.0.0",
     "power-assert": "^1.2.0",
+    "react": "^15.4.0",
     "sinon": "^1.17.3"
   },
   "files": [
