@@ -22,9 +22,7 @@ describe('App', () => {
     const dispatcher = new Dispatcher();
     action = new FoodFighterAction(dispatcher);
     dispatchSpy = sinon.spy(action, 'dispatch');
-    const App = proxyquire('../../src/components/App', {
-      '../actions/FoodFighterAction': {'default': action}
-    });
+    const App = proxyquire('../../src/components/App', {'../actions/FoodFighterAction': {'default': action}});
     const AppContainer = Container.create(App);
     cmp = ReactTestUtils.renderIntoDocument(<AppContainer />);
   });

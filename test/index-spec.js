@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import assert from 'power-assert';
 import sinon from 'sinon';
 import {Dispatcher} from 'flux';
@@ -19,8 +20,8 @@ describe('SimpleActionCreator', () => {
     DummyStore = class extends ReduceStore {
       getInitialState() {
         return {
-          go: [],
-          back: []
+          back: [],
+          go: []
         };
       }
       reduce(state, action) {
@@ -58,6 +59,6 @@ describe('SimpleActionCreator', () => {
     dummyAction.go(goData);
     assert(actionSpy.args.length === 1);
     assert(actionSpy.args[0].length === 2);
-    assert.deepEqual(actionSpy.args[0][1], {type: 'go', data: goData});
+    assert.deepEqual(actionSpy.args[0][1], {data: goData, type: 'go'});
   });
 });

@@ -12,7 +12,7 @@ export class FoodFighterStore extends ReduceStore {  // eslint-disable-line requ
    *
    * @return {number}
    */
-  getInitialState() {
+  static getInitialState() {
     return 0;
   }
 
@@ -25,7 +25,7 @@ export class FoodFighterStore extends ReduceStore {  // eslint-disable-line requ
    * @param {Object|undefined} action.data action data
    * @return {number}
    */
-  reduce(state, action) {
+  static reduce(state, action) {
     switch (action.type) {
     case FoodFighterAction.types.eat:
       return state + action.data.count;
