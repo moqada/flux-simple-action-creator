@@ -23,9 +23,7 @@ export default class App extends React.Component {  // eslint-disable-line requi
    * @return {Object}
    */
   static calculateState() {
-    return {
-      count: FoodFighterStore.getState()
-    };
+    return {count: FoodFighterStore.getState()};
   }
 
   /**

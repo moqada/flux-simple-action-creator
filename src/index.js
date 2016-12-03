@@ -23,6 +23,6 @@ export default class SimpleActionCreator {  // eslint-disable-line require-jsdoc
    * @param {Object|undefined} data action data
    */
   dispatch(type, data) {
-    this.dispatcher.dispatch({type, data});
+    this.dispatcher.dispatch({data, type});
   }
 }
