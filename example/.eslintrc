@@ -4,4 +4,17 @@ extends:
   - moqada/react
 parser: babel-eslint
 rules:
+  class-methods-use-this:
+    - 2
+    - exceptMethods:
+      - getInitialState
+      - reduce
+      - componentDidMount
+      - componentDidUpdate
+      - componentWillMount
+      - componentWillReceiveProps
+      - componentWillUnmount
+      - componentWillUpdate
+      - render
+      - shouldComponentUpdate
   node/no-unsupported-features: 0
