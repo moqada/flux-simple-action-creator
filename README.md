@@ -1,5 +1,7 @@
 # flux-simple-action-creator
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/moqada/flux-simple-action-creator.svg)](https://greenkeeper.io/)
+
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][npm-download-image]][npm-download-url]
 [![Build Status][travis-image]][travis-url]
